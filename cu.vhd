@@ -16,7 +16,7 @@ entity cu is
 		flags:	out	std_logic_vector(3 downto 0);
 		data3: out	std_logic_vector(7 downto 0)
 	);
-end alu;
+end cu;
 
 
 architecture bhv of cu is
