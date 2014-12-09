@@ -24,9 +24,12 @@ begin
 		if(reset='1')
 		then
 			value<="00000000";
-		elsif(ctrl="")
+		elsif(ctrl="00000001")
 		then
-			--
+			ag<=value;
+		elsif(ctrl="00000010")
+		then
+			value<=data
 		else
 			data<="ZZZZZZZZ";
 			ag<="ZZZZZZZZ";
