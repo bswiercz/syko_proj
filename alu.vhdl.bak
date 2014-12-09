@@ -1,0 +1,38 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity alu is
+	generic
+	(
+	);
+
+	port
+	(
+		reset:	in	std_logic;
+		data:	inout	std_logic_vector(7 downto 0);
+		ag:	out	std_logic_vector(7 downto 0);
+		ctrl:	in	std_logic_vector(7 downto 0)
+	);
+end alu;
+
+
+architecture bhv of alu is
+	signal value:	std_logic_vector(7 downto 0);
+begin
+	process(reset, ctrl)
+	begin
+		if(reset='1')
+		then
+			value<="00000000";
+		elsif(ctrl="00000001")
+		then
+			ag<=value;
+		elsif(ctrl="00000010")
+		then
+			value<=data
+		else
+			data<="ZZZZZZZZ";
+			ag<="ZZZZZZZZ";
+		end if;
+	end process;
+end bhv;
