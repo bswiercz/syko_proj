@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity rejestr is
+entity pc is
 	generic
 	(
 		delay:	time:=500 ps;
@@ -9,16 +9,13 @@ entity rejestr is
 
 	port
 	(
-		reset:		in	std_logic;
-		ie:		in	std_logic;
-		oe:		in	std_logic;
-		data_i:	in	std_logic_vector(7 downto 0);
-		data_o:	out	std_logic_vector(7 downto 0);
-		ag:		out	std_logic_vector(7 downto 0)
+		reset:	in	std_logic;
+		pcnt:	inout	std_logic_vector(7 downto 0);
+		ctrl:	in	std_logic_vector(1 downto 0)
 	);
-end rejestr;
+end pc;
 
-architecture bhv of rejestr is
+architecture bhv of pc is
 	signal tmp_val:	std_logic_vector(7 downto 0);
 begin
 	process(clk, reset, ctrl)
@@ -30,13 +27,13 @@ begin
 				tmp_val<="00000000";
 			elsif(ctrl="00")
 			then
-				data_o<=tmp_val;
+				data<=tmp_val;
 			elsif(ctrl="01")
 			then
-				tmp_val<=data_i;
+				tmp_val<=data
 			elsif(ctrl="10")
 			then
-				ag<=tmp_val;
+				ag<=data
 			else
 				data<="ZZZZZZZZ";
 				ag<="ZZZZZZZZ";
